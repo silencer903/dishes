@@ -41,6 +41,10 @@ class FindDishesForUser extends Dishes {
 				$dataProvider->setModels([]);
 				$this->load($params);
 				$this->error_for_user="Выберите больше ингредиентов";
+			}elseif(count($ingredients_need)>5){
+				$dataProvider->setModels([]);
+				$this->load($params);
+				$this->error_for_user="Выбрано больше 5 ингредиентов";
 			}else{
 				$ingredients_ids=$params['FindDishesForUser']['ingredients'];
 				$query=FindDishesForUser::find()->joinWith("ingredientsLink")->where(['in','dishes_ingredients.id_ingredients',$ingredients_ids]);
